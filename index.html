@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeafGraphix — Premium Design Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C9A962;
+            --gold-light: #E8D5A3;
+            --dark: #0F0F0F;
+            --charcoal: #1A1A1A;
+            --slate: #2D2D2D;
+            --cream: #F5F2EB;
+            --white: #FFFFFF;
+            --muted: #8A8A8A;
+            --border: rgba(201,169,98,0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVIGATION ─── */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(15,15,15,0.92); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+        nav.scrolled { padding: 0.6rem 0; }
+        .nav-inner {
+            max-width: 1280px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.2rem 2rem;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; font-weight: 600;
+            color: var(--gold); letter-spacing: 1px;
+        }
+        .logo span { color: var(--cream); font-weight: 400; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--muted); text-decoration: none;
+            font-size: 0.85rem; font-weight: 500;
+            letter-spacing: 0.5px; text-transform: uppercase;
+            transition: color 0.3s; position: relative;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -6px; left: 0;
+            width: 0; height: 1px; background: var(--gold);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: var(--gold); color: var(--dark);
+            padding: 0.6rem 1.5rem; border-radius: 4px;
+            font-size: 0.8rem; font-weight: 600;
+            text-decoration: none; letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            position: relative; overflow: hidden;
+            padding: 8rem 2rem 4rem;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(201,169,98,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(201,169,98,0.05) 0%, transparent 40%);
+        }
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image: 
+                linear-gradient(rgba(201,169,98,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201,169,98,0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+        .hero-inner {
+            max-width: 1280px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+            align-items: center; position: relative; z-index: 2;
+        }
+        .hero-label {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            color: var(--gold); font-size: 0.75rem;
+            font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .hero-label::before {
+            content: ''; width: 40px; height: 1px; background: var(--gold);
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 500; line-height: 1.1;
+            color: var(--white); margin-bottom: 1.5rem;
+        }
+        .hero-title em {
+            font-style: italic; color: var(--gold);
+        }
+        .hero-desc {
+            font-size: 1.1rem; line-height: 1.8;
+            color: var(--muted); max-width: 520px;
+            margin-bottom: 2.5rem; font-weight: 300;
+        }
+        .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--gold); color: var(--dark);
+            padding: 1rem 2.5rem; border-radius: 4px;
+            font-size: 0.85rem; font-weight: 600;
+            text-decoration: none; letter-spacing: 0.5px;
+            border: none; cursor: pointer;
+            transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 40px rgba(201,169,98,0.2); }
+        .btn-secondary {
+            background: transparent; color: var(--cream);
+            padding: 1rem 2.5rem; border-radius: 4px;
+            font-size: 0.85rem; font-weight: 500;
+            text-decoration: none; letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.15);
+            cursor: pointer; transition: all 0.3s;
+        }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+        .hero-visual {
+            position: relative; display: flex; justify-content: center;
+        }
+        .hero-card {
+            width: 320px; height: 420px;
+            background: var(--charcoal);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            transform: rotate(-3deg);
+            transition: transform 0.6s ease;
+        }
+        .hero-card:hover { transform: rotate(0deg) translateY(-10px); }
+        .hero-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(201,169,98,0.1) 0%, transparent 50%);
+        }
+        .card-header {
+            padding: 1.5rem; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .card-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+        .card-body { padding: 2rem; }
+        .card-line { height: 3px; background: var(--slate); border-radius: 2px; margin-bottom: 1rem; }
+        .card-line.short { width: 60%; }
+        .card-line.gold { background: var(--gold); width: 40%; }
+        .card-img {
+            width: 100%; height: 140px;
+            background: var(--slate); border-radius: 8px;
+            margin-top: 1.5rem;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--muted); font-size: 0.75rem; letter-spacing: 1px;
+        }
+
+        .hero-card-back {
+            position: absolute; width: 320px; height: 420px;
+            background: var(--slate);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            right: -40px; top: 30px;
+            transform: rotate(6deg);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* ─── SECTIONS COMMON ─── */
+        section { padding: 6rem 2rem; position: relative; }
+        .section-inner { max-width: 1280px; margin: 0 auto; }
+        .section-label {
+            color: var(--gold); font-size: 0.75rem;
+            font-weight: 500; letter-spacing: 3px;
+            text-transform: uppercase; margin-bottom: 1rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 500; color: var(--white);
+            margin-bottom: 1rem; line-height: 1.2;
+        }
+        .section-desc {
+            color: var(--muted); font-size: 1.05rem;
+            line-height: 1.7; max-width: 600px;
+        }
+
+        /* ─── ABOUT ─── */
+        .about { background: var(--charcoal); }
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+            align-items: center;
+        }
+        .about-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+            margin-top: 3rem;
+        }
+        .stat-item { padding: 1.5rem; border-left: 2px solid var(--gold); }
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; color: var(--gold);
+            font-weight: 600;
+        }
+        .stat-label { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; }
+        .about-visual {
+            position: relative; height: 500px;
+            background: var(--dark);
+            border-radius: 12px; border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .about-visual::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(201,169,98,0.05) 50%, transparent 60%);
+        }
+        .about-geo {
+            position: absolute; width: 300px; height: 300px;
+            border: 1px solid var(--border); border-radius: 50%;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+        }
+        .about-geo::after {
+            content: ''; position: absolute; inset: 40px;
+            border: 1px solid var(--gold); border-radius: 50%;
+            opacity: 0.3;
+        }
+        .about-geo-inner {
+            position: absolute; width: 120px; height: 120px;
+            background: var(--gold); border-radius: 50%;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            opacity: 0.1;
+        }
+
+        /* ─── SERVICES ─── */
+        .services { background: var(--dark); }
+        .services-header {
+            text-align: center; margin-bottom: 4rem;
+        }
+        .services-header .section-desc { margin: 0 auto; }
+        .services-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+        .service-card {
+            background: var(--charcoal);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 2.5rem;
+            transition: all 0.4s ease; cursor: pointer;
+            position: relative; overflow: hidden;
+        }
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 2px; background: var(--gold);
+            transform: scaleX(0); transition: transform 0.4s ease;
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover {
+            border-color: rgba(201,169,98,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .service-icon {
+            width: 48px; height: 48px;
+            background: rgba(201,169,98,0.1);
+            border-radius: 10px; display: flex;
+            align-items: center; justify-content: center;
+            margin-bottom: 1.5rem; font-size: 1.3rem;
+        }
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem; color: var(--white);
+            margin-bottom: 0.75rem; font-weight: 500;
+        }
+        .service-card p {
+            color: var(--muted); font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .service-tag {
+            display: inline-block; margin-top: 1.5rem;
+            font-size: 0.7rem; color: var(--gold);
+            letter-spacing: 1px; text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* ─── PORTFOLIO ─── */
+        .portfolio { background: var(--charcoal); }
+        .portfolio-header {
+            display: flex; justify-content: space-between;
+            align-items: flex-end; margin-bottom: 3rem;
+        }
+        .portfolio-filters {
+            display: flex; gap: 0.5rem;
+        }
+        .filter-btn {
+            background: transparent; color: var(--muted);
+            border: 1px solid var(--border); padding: 0.5rem 1.2rem;
+            border-radius: 4px; font-size: 0.8rem; cursor: pointer;
+            transition: all 0.3s; font-family: 'Inter', sans-serif;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--gold); color: var(--dark);
+            border-color: var(--gold);
+        }
+        .portfolio-grid {
+            display: grid; grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .portfolio-item {
+            position: relative; border-radius: 12px;
+            overflow: hidden; cursor: pointer;
+            background: var(--dark); border: 1px solid var(--border);
+        }
+        .portfolio-item.large { grid-column: span 7; grid-row: span 2; height: 500px; }
+        .portfolio-item.medium { grid-column: span 5; height: 240px; }
+        .portfolio-item.small { grid-column: span 4; height: 240px; }
+        .portfolio-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .portfolio-item:hover img { transform: scale(1.05); }
+        .portfolio-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(15,15,15,0.9) 0%, transparent 60%);
+            display: flex; flex-direction: column;
+            justify-content: flex-end; padding: 2rem;
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-overlay h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--white); font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        .portfolio-overlay span {
+            color: var(--gold); font-size: 0.75rem;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        /* ─── PRICING ─── */
+        .pricing { background: var(--dark); }
+        .pricing-header { text-align: center; margin-bottom: 4rem; }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+            max-width: 1000px; margin: 0 auto;
+        }
+        .pricing-card {
+            background: var(--charcoal);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 2.5rem;
+            text-align: center; transition: all 0.4s;
+            position: relative;
+        }
+        .pricing-card.featured {
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(201,169,98,0.1);
+        }
+        .pricing-badge {
+            position: absolute; top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold); color: var(--dark);
+            padding: 0.3rem 1rem; border-radius: 20px;
+            font-size: 0.7rem; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .pricing-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--white); font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-card .desc {
+            color: var(--muted); font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+        .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; color: var(--gold);
+            font-weight: 600; margin-bottom: 0.3rem;
+        }
+        .price span {
+            font-size: 1rem; color: var(--muted);
+            font-family: 'Inter', sans-serif;
+        }
+        .price-features {
+            list-style: none; margin: 2rem 0;
+            text-align: left;
+        }
+        .price-features li {
+            padding: 0.6rem 0; color: var(--muted);
+            font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .price-features li::before {
+            content: '✓'; color: var(--gold); font-weight: 600;
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        .testimonials { background: var(--charcoal); }
+        .testimonials-header { text-align: center; margin-bottom: 4rem; }
+        .testimonials-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+        .testimonial-card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 2rem;
+            transition: all 0.3s;
+        }
+        .testimonial-card:hover {
+            border-color: rgba(201,169,98,0.2);
+            transform: translateY(-2px);
+        }
+        .testimonial-stars { color: var(--gold); margin-bottom: 1rem; font-size: 1rem; }
+        .testimonial-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem; color: var(--cream);
+            line-height: 1.6; font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        .testimonial-author {
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .author-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--slate); display: flex;
+            align-items: center; justify-content: center;
+            color: var(--gold); font-weight: 600; font-size: 0.9rem;
+        }
+        .author-info h5 { color: var(--white); font-size: 0.9rem; font-weight: 500; }
+        .author-info span { color: var(--muted); font-size: 0.8rem; }
+
+        /* ─── CONTACT / CTA ─── */
+        .contact { background: var(--dark); position: relative; overflow: hidden; }
+        .contact::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201,169,98,0.06) 0%, transparent 60%);
+        }
+        .contact-inner {
+            max-width: 800px; margin: 0 auto;
+            text-align: center; position: relative; z-index: 2;
+        }
+        .contact .section-title { margin-bottom: 1.5rem; }
+        .contact .section-desc { margin: 0 auto 2.5rem; }
+        .whatsapp-cta {
+            display: inline-flex; align-items: center; gap: 1rem;
+            background: #25D366; color: var(--dark);
+            padding: 1.2rem 3rem; border-radius: 8px;
+            font-size: 1rem; font-weight: 600;
+            text-decoration: none; letter-spacing: 0.5px;
+            transition: all 0.3s; margin-bottom: 1rem;
+        }
+        .whatsapp-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37,211,102,0.3);
+        }
+        .contact-alt {
+            color: var(--muted); font-size: 0.85rem;
+            margin-top: 1.5rem;
+        }
+        .contact-alt a { color: var(--gold); text-decoration: none; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--charcoal);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+        }
+        .footer-inner {
+            max-width: 1280px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-brand .logo { margin-bottom: 0.5rem; }
+        .footer-brand p { color: var(--muted); font-size: 0.85rem; }
+        .footer-links { display: flex; gap: 2rem; }
+        .footer-links a {
+            color: var(--muted); text-decoration: none;
+            font-size: 0.85rem; transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-copy { color: var(--muted); font-size: 0.8rem; }
+
+        /* ─── MENU CARD PREVIEW ─── */
+        .menu-preview {
+            background: var(--charcoal); padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .menu-preview-inner {
+            max-width: 600px; margin: 0 auto;
+            background: var(--white); color: var(--dark);
+            border-radius: 8px; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+        .menu-header {
+            background: var(--dark); color: var(--gold);
+            padding: 2rem; text-align: center;
+        }
+        .menu-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem; font-weight: 500;
+        }
+        .menu-header p { color: var(--muted); font-size: 0.8rem; margin-top: 0.5rem; letter-spacing: 2px; text-transform: uppercase; }
+        .menu-body { padding: 2rem; }
+        .menu-section { margin-bottom: 2rem; }
+        .menu-section h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold); font-size: 1rem;
+            letter-spacing: 2px; text-transform: uppercase;
+            border-bottom: 1px solid #eee; padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .menu-item {
+            display: flex; justify-content: space-between;
+            align-items: baseline; padding: 0.6rem 0;
+            border-bottom: 1px dotted #eee;
+        }
+        .menu-item-name { font-weight: 500; font-size: 0.95rem; }
+        .menu-item-desc { font-size: 0.8rem; color: #888; margin-top: 0.2rem; }
+        .menu-item-price { font-family: 'Playfair Display', serif; font-weight: 600; color: var(--dark); }
+
+        /* ─── SIGNAGE PREVIEW ─── */
+        .signage-preview {
+            background: var(--dark); padding: 4rem 2rem;
+        }
+        .signage-inner {
+            max-width: 900px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+        }
+        .signage-board {
+            background: var(--charcoal);
+            border: 2px solid var(--gold);
+            border-radius: 4px; padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5),
+                        inset 0 0 40px rgba(201,169,98,0.05);
+        }
+        .signage-board h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold); font-size: 2rem;
+            letter-spacing: 4px; text-transform: uppercase;
+        }
+        .signage-board .sub {
+            color: var(--muted); font-size: 0.75rem;
+            letter-spacing: 3px; margin-top: 0.5rem;
+        }
+        .signage-directional {
+            background: var(--white); color: var(--dark);
+            border-radius: 4px; padding: 1.5rem 2rem;
+            display: flex; align-items: center; gap: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .signage-arrow {
+            width: 40px; height: 40px;
+            background: var(--gold); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--dark); font-weight: bold;
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate {
+            opacity: 0; animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-desc { margin: 0 auto 2rem; }
+            .hero-visual { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .portfolio-item.large { grid-column: span 6; }
+            .portfolio-item.medium { grid-column: span 6; }
+            .portfolio-item.small { grid-column: span 6; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: none; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .signage-inner { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .portfolio-item.large, .portfolio-item.medium, .portfolio-item.small {
+                grid-column: span 1; height: 280px;
+            }
+            .about-stats { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="logo">Leaf<span>Graphix</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Work</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="https://wa.me/918891693540?text=Hi%20LeafGraphix,%20I'm%20interested%20in%20your%20design%20services." class="nav-cta" target="_blank">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-label">AI-Assisted Design Studio</div>
+                <h1 class="hero-title">Design that<br>builds <em>prestige</em></h1>
+                <p class="hero-desc">
+                    LeafGraphix crafts premium visual identities for architecture, hospitality, 
+                    branding, and product presentation. Where artificial intelligence meets 
+                    timeless human taste.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#portfolio" class="btn-primary">View Our Work →</a>
+                    <a href="https://wa.me/918891693540?text=Hi%20LeafGraphix,%20I'm%20interested%20in%20your%20design%20services." class="btn-secondary" target="_blank">Start on WhatsApp</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card-back"></div>
+                <div class="hero-card">
+                    <div class="card-header">
+                        <span style="color:var(--muted); font-size:0.75rem;">LEAFG RAPHIX</span>
+                        <div style="display:flex; gap:6px;">
+                            <div class="card-dot"></div>
+                            <div class="card-dot" style="opacity:0.5;"></div>
+                            <div class="card-dot" style="opacity:0.25;"></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-line" style="width:80%;"></div>
+                        <div class="card-line short"></div>
+                        <div class="card-line gold"></div>
+                        <div class="card-img">PORTFOLIO PREVIEW</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div>
+                    <div class="section-label">About Us</div>
+                    <h2 class="section-title">Precision meets<br>creativity</h2>
+                    <p class="section-desc">
+                        We are a boutique design studio that leverages cutting-edge AI tools 
+                        alongside decades of design expertise. Every project receives the 
+                        meticulous attention of a master craftsman, accelerated by intelligent 
+                        technology.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-num">150+</div>
+                            <div class="stat-label">Projects Delivered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">98%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">48h</div>
+                            <div class="stat-label">Average Turnaround</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">12+</div>
+                            <div class="stat-label">Cities Served</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-geo"></div>
+                    <div class="about-geo-inner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div class="section-inner">
+            <div class="services-header">
+                <div class="section-label">What We Do</div>
+                <h2 class="section-title">Complete design<br>ecosystem</h2>
+                <p class="section-desc">
+                    From the first impression to the lasting memory — we design every touchpoint 
+                    of your brand experience with cohesive elegance.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🍽️</div>
+                    <h3>Menu Design</h3>
+                    <p>Premium restaurant menu cards with refined typography, clear section divisions, and print-ready elegance that elevates the dining experience.</p>
+                    <span class="service-tag">Print & Digital</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Website Design</h3>
+                    <p>Conversion-focused web experiences with responsive layouts, WhatsApp integration, and luxury aesthetics that convert visitors into clients.</p>
+                    <span class="service-tag">Responsive Web</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Exterior Signage</h3>
+                    <p>Bold, elegant, and highly visible signage with modern architectural feel — built to attract attention and establish brand presence.</p>
+                    <span class="service-tag">Outdoor Branding</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🖼️</div>
+                    <h3>Interior Graphics</h3>
+                    <p>Wall graphics, directional signage, and decorative brand panels that create immersive, architecturally aligned spatial experiences.</p>
+                    <span class="service-tag">Spatial Design</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Brand Identity</h3>
+                    <p>Complete visual identity systems including logos, color palettes, typography, and brand guidelines for consistent market presence.</p>
+                    <span class="service-tag">Identity Systems</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📐</div>
+                    <h3>Architecture Visuals</h3>
+                    <p>Stunning 3D renders, floor plan graphics, and presentation materials that bring architectural concepts to life with photorealistic detail.</p>
+                    <span class="service-tag">3D & Render</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-inner">
+            <div class="portfolio-header">
+                <div>
+                    <div class="section-label">Selected Work</div>
+                    <h2 class="section-title" style="margin-bottom:0;">Recent projects</h2>
+                </div>
+                <div class="portfolio-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Menu</button>
+                    <button class="filter-btn">Web</button>
+                    <button class="filter-btn">Signage</button>
+                </div>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item large">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Restaurant Branding">
+                    <div class="portfolio-overlay">
+                        <span>Menu & Interior</span>
+                        <h4>The Copper Plate</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item medium">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Website Design">
+                    <div class="portfolio-overlay">
+                        <span>Website</span>
+                        <h4>Atelier Homes</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item medium">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Cafe Signage">
+                    <div class="portfolio-overlay">
+                        <span>Signage</span>
+                        <h4>Brew & Bloom</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item small">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Office Interior">
+                    <div class="portfolio-overlay">
+                        <span>Interior Graphics</span>
+                        <h4>Vertex Offices</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item small">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Luxury Menu">
+                    <div class="portfolio-overlay">
+                        <span>Menu Design</span>
+                        <h4>Maison Noir</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item small">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Architecture">
+                    <div class="portfolio-overlay">
+                        <span>Architecture</span>
+                        <h4>Skyline Tower</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU PREVIEW -->
+    <section class="menu-preview" id="menu-preview">
+        <div class="section-inner" style="text-align:center; margin-bottom:3rem;">
+            <div class="section-label">Menu Design</div>
+            <h2 class="section-title">Print-ready elegance</h2>
+            <p class="section-desc" style="margin:0 auto;">Sophisticated layouts designed for high-end restaurants and cafés.</p>
+        </div>
+        <div class="menu-preview-inner">
+            <div class="menu-header">
+                <h2>LEAF GRAPHIX</h2>
+                <p>Sample Menu Presentation</p>
+            </div>
+            <div class="menu-body">
+                <div class="menu-section">
+                    <h4>Starters</h4>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Truffle Arancini</div>
+                            <div class="menu-item-desc">Black truffle, parmesan, herb aioli</div>
+                        </div>
+                        <div class="menu-item-price">₹450</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Burrata & Heirloom</div>
+                            <div class="menu-item-desc">Fresh burrata, vine tomatoes, basil oil</div>
+                        </div>
+                        <div class="menu-item-price">₹620</div>
+                    </div>
+                </div>
+                <div class="menu-section">
+                    <h4>Main Course</h4>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Wagyu Ribeye</div>
+                            <div class="menu-item-desc">A5 grade, rosemary jus, roasted garlic</div>
+                        </div>
+                        <div class="menu-item-price">₹2,800</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Duck Confit</div>
+                            <div class="menu-item-desc">Orange glaze, root vegetables, jus</div>
+                        </div>
+                        <div class="menu-item-price">₹1,450</div>
+                    </div>
+                </div>
+                <div class="menu-section">
+                    <h4>Desserts</h4>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Dark Chocolate Fondant</div>
+                            <div class="menu-item-desc">Valrhona 70%, vanilla bean ice cream</div>
+                        </div>
+                        <div class="menu-item-price">₹480</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIGNAGE PREVIEW -->
+    <section class="signage-preview" id="signage">
+        <div class="section-inner" style="text-align:center; margin-bottom:3rem;">
+            <div class="section-label">Exterior Signage</div>
+            <h2 class="section-title">Bold brand presence</h2>
+            <p class="section-desc" style="margin:0 auto;">Architectural signage that commands attention and builds trust.</p>
+        </div>
+        <div class="signage-inner">
+            <div class="signage-board">
+                <h3>Leaf Graphix</h3>
+                <div class="sub">DESIGN STUDIO · EST. 2020</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:1rem;">
+                <div class="signage-directional">
+                    <div class="signage-arrow">→</div>
+                    <div>
+                        <div style="font-weight:600;">Reception</div>
+                        <div style="font-size:0.8rem; color:#888;">Ground Floor</div>
+                    </div>
+                </div>
+                <div class="signage-directional">
+                    <div class="signage-arrow" style="transform:rotate(90deg);">→</div>
+                    <div>
+                        <div style="font-weight:600;">Conference Room</div>
+                        <div style="font-size:0.8rem; color:#888;">First Floor</div>
+                    </div>
+                </div>
+                <div class="signage-directional">
+                    <div class="signage-arrow">←</div>
+                    <div>
+                        <div style="font-weight:600;">Design Lab</div>
+                        <div style="font-size:0.8rem; color:#888;">Basement Level</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <div class="section-inner">
+            <div class="pricing-header">
+                <div class="section-label">Investment</div>
+                <h2 class="section-title">Transparent pricing</h2>
+                <p class="section-desc" style="margin:0 auto;">
+                    Premium design services with clear, upfront pricing. 
+                    No hidden fees. No surprises.
+                </p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <p class="desc">Perfect for small businesses</p>
+                    <div class="price">₹4,999<span>/project</span></div>
+                    <ul class="price-features">
+                        <li>Single-page menu design</li>
+                        <li>Basic logo refinement</li>
+                        <li>2 revision rounds</li>
+                        <li>Print-ready files</li>
+                        <li>3-day delivery</li>
+                    </ul>
+                    <a href="https://wa.me/918891693540?text=Hi%20LeafGraphix,%20I'm%20interested%20in%20the%20Starter%20plan." class="btn-secondary" style="width:100%; display:block; text-align:center;" target="_blank">Select Plan</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>Professional</h3>
+                    <p class="desc">For growing hospitality brands</p>
+                    <div class="price">₹14,999<span>/project</span></div>
+                    <ul class="price-features">
+                        <li>Complete menu system (4 sections)</li>
+                        <li>Website landing page</li>
+                        <li>Exterior signage concept</li>
+                        <li>5 revision rounds</li>
+                        <li>Source files included</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="https://wa.me/918891693540?text=Hi%20LeafGraphix,%20I'm%20interested%20in%20the%20Professional%20plan." class="btn-primary" style="width:100%; display:block; text-align:center;" target="_blank">Select Plan</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <p class="desc">Full brand transformation</p>
+                    <div class="price">₹39,999<span>/project</span></div>
+                    <ul class="price-features">
+                        <li>Complete brand identity</li>
+                        <li>Multi-page website</li>
+                        <li>Interior & exterior signage</li>
+                        <li>Unlimited revisions</li>
+                        <li>Dedicated project manager</li>
+                        <li>Social media kit</li>
+                    </ul>
+                    <a href="https://wa.me/918891693540?text=Hi%20LeafGraphix,%20I'm%20interested%20in%20the%20Enterprise%20plan." class="btn-secondary" style="width:100%; display:block; text-align:center;" target="_blank">Select Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="section-inner">
+            <div class="testimonials-header">
+                <div class="section-label">Testimonials</div>
+                <h2 class="section-title">Client voices</h2>
+                <p class="section-desc" style="margin:0 auto;">
+                    Trusted by restaurateurs, architects, and business owners across India.
+                </p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"LeafGraphix transformed our restaurant's entire visual identity. The menu design alone increased our average order value by 22%."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h5>Rajesh Kapoor</h5>
+                            <span>Owner, The Copper Plate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The signage they designed for our new café location has become a landmark. People take photos with it daily."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SP</div>
+                        <div class="author-info">
+                            <h5>Sarah Patel</h5>
+                            <span>Founder, Brew & Bloom</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Professional, fast, and incredibly detailed. Our architectural renders helped us secure the project within a week."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AM</div>
+                        <div class="author-info">
+                            <h5>Arun Mehta</h5>
+                            <span>Principal, Atelier Homes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="contact-inner">
+            <div class="section-label">Get In Touch</div>
+            <h2 class="section-title">Ready to elevate<br>your brand?</h2>
+            <p class="section-desc">
+                Let's discuss your project. We're available on WhatsApp for quick consultations 
+                and detailed project briefings. Response within 2 hours.
+            </p>
+            <a href="https://wa.me/918891693540?text=Hi%20LeafGraphix,%20I'm%20interested%20in%20your%20design%20services." class="whatsapp-cta" target="_blank">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Chat on WhatsApp
+            </a>
+            <p class="contact-alt">
+                Or email us at <a href="mailto:leafgraphicdesinging@gmail.com">leafgraphicdesinging@gmail.com</a> 
+                — We reply within 24 hours.<br>
+                Visit <a href="https://leafgraphix.in" target="_blank">leafgraphix.in</a> for more.
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="logo">Leaf<span>Graphix</span></div>
+                <p>Premium AI-Assisted Design Studio</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://wa.me/918891693540" target="_blank">WhatsApp</a>
+                <a href="mailto:leafgraphicdesinging@gmail.com">Email</a>
+                <a href="https://leafgraphix.in" target="_blank">Website</a>
+            </div>
+            <div class="footer-copy">© 2026 LeafGraphix. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Portfolio filter (visual only)
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .portfolio-item, .pricing-card, .testimonial-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
