@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:ror="http://rorweb.com/0.1/" >
+<!-- www.check-domains.com sitemap generator -->
+<channel>
+ <title>ROR Sitemap for http://leafgraphix.in</title>
+ <link>http://leafgraphix.in</link>
+ <description>ROR Sitemap</description>  
+ 
+<item>
+   <title>Leaf Graphix — Architecture Edition 2026</title>  
+   <link>http://leafgraphix.in/</link>
+   <description>Leaf Graphix — Architecture Edition 2026</description>
+   <ror:updatePeriod>monthly</ror:updatePeriod>
+   <ror:sortOrder>0</ror:sortOrder>
+   <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+</channel>
+</rss>
